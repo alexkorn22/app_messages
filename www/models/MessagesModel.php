@@ -11,8 +11,5 @@ class MessagesModel extends AbstractModel
 {
     protected static $table = 'messages';
 
-    public function __construct(){
-        $this->date = time();
-    }
 
 }

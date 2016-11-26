@@ -3,6 +3,8 @@
 class MessagesController extends AbstractController
 {
     public function actionAll() {
+
+        $this->view->arResult = MessagesModel::findAll();
         MainView::display_template($this->view->render("messages"));
     }
 
@@ -11,6 +13,7 @@ class MessagesController extends AbstractController
         if ($this->IsPost()) {
             $messages = new MessagesModel();
             $messages->id_author = UserModel::CurrentUserID();
+            $messages->date = time();
             $messages ->text = $_POST['text'];
             $messages->save();
         }

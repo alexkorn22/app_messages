@@ -11,8 +11,20 @@
     </div>
 </form>
 <hr>
+<?foreach ($arResult as $item):?>
 <div class="row">
     <div class="col-md-12">
-
+        <ul class="media-list">
+            <li class="media">
+                <a class="pull-left" >
+                    <p>Автор: <?php echo $item->id_author;?> </p>
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><?php echo date('d.m.Y H:m', $item->date);?></h4>
+                    <p><?php echo $item->text?></p>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
+<?endforeach;?>
