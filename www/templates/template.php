@@ -8,7 +8,7 @@
 
     <!-- Bootstrap -->
     <link href="templates/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="templates/css/style.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,6 +18,8 @@
 </head>
 <body>
 <div class="container">
+    <a href="#">Главная</a>
+    <a href="?ctrl=Messages&act=All">Сообщения</a>
     <?php echo $content?>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

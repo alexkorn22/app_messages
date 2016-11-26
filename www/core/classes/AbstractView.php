@@ -4,7 +4,6 @@ abstract class AbstractView
 {
     protected $data = array();
     private $dir_tmpl = PATH_FILE_TEMPLATES;
-    public $template;
 
     public function __set($key, $value){
         $this->data[$key] = $value;
@@ -13,23 +12,18 @@ abstract class AbstractView
         return $this->data[$key];
     }
 
-    public function render(){
+    public function render($template){
         foreach ($this->data as $key => $value){
             $$key = $value;
         }
         ob_start();
-        include($this->dir_tmpl . '/' . $this->template . '.php');
+        include($this->dir_tmpl . '/' . $template. '.php');
         return ob_get_clean();
     }
 
-    public function display(){
+    public function display($template){
 
-        echo $this->render();
-
-    }
-    public static function display_template($content){
-
-        include(PATH_FILE_TEMPLATES . '/template.php');
+        echo $this->render($template);
 
     }
 
