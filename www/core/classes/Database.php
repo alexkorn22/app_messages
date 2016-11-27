@@ -7,7 +7,7 @@ class Database
 
     public function __construct()
     {
-        require_once(PATH_FILE_CONFIG_DATABASE);
+        require(PATH_FILE_CONFIG_DATABASE);
         $dsn = 'mysql:dbname=' . $arConfigDatabase['dbname']. ';host=' . $arConfigDatabase['host'];
         $this->dbh = new PDO($dsn, $arConfigDatabase['user'], $arConfigDatabase['password']);
     }

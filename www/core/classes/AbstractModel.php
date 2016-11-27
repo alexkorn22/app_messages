@@ -1,6 +1,6 @@
 <?php
 
-abstract class AbstractModel
+abstract class AbstractModel implements Iterator
 {
     protected static $table;
 
@@ -16,8 +16,39 @@ abstract class AbstractModel
         return $this->data[$name];
     }
 
-    public static function findAll() {
-        $sql = 'SELECT * FROM ' . static::$table;
+    public function rewind()
+    {
+        reset($this->data);
+    }
+
+    public function current()
+    {
+        $data = current($this->data);
+        return $data;
+    }
+
+    public function key()
+    {
+        $key = key($this->data);
+        return $key;
+    }
+
+    public function next()
+    {
+        $data = next($this->data);
+        return $data;
+    }
+
+    public function valid()
+    {
+        $key = key($this->data);
+        $var = ($key !== NULL && $key !== FALSE);
+        return $var;
+    }
+
+    public static function findAll($order = array()) {
+
+        $sql = 'SELECT * FROM ' . static::$table . AbstractModel::sql_string_order($order);
         $db = new Database();
         $db->setClassName(get_called_class());
         return $db->query($sql);
@@ -39,9 +70,9 @@ abstract class AbstractModel
 
     }
 
-    public static function findByColumn($column, $value) {
+    public static function findByColumn($column, $value, $order = array()) {
         $paramKey = ':' . $column;
-        $sql = 'SELECT * FROM ' . static::$table . ' WHERE ' . $column . '=' . $paramKey;
+        $sql = 'SELECT * FROM ' . static::$table . ' WHERE ' . $column . '=' . $paramKey .  AbstractModel::sql_string_order($order);
         $params = array();
         $params[$paramKey] = $value;
 
@@ -51,7 +82,25 @@ abstract class AbstractModel
         if (empty($res)) {
             return false;
         }
-        return $res[0];
+        return $res;
+    }
+
+    public static function findByColumns($values, $order = array()) {
+
+        $params = array();
+        $arData = array();
+        foreach ($values as $item) {
+            $arData[] = $item['column'] . '=:' . $item['column'];
+            $params[':'.$item['column']] = $item['value'];
+        }
+        $sql = 'SELECT * FROM ' . static::$table . ' WHERE ' . implode(" AND ", $arData) .  AbstractModel::sql_string_order($order);
+        $db = new Database();
+        $db->setClassName(get_called_class());
+        $res = $db->query($sql, $params);
+        if (empty($res)) {
+            return false;
+        }
+        return $res;
     }
 
     protected function insert() {
@@ -112,4 +161,20 @@ abstract class AbstractModel
         return $db->execute($sql,$params);
     }
 
+    protected static function sql_string_order($order) {
+        $sql = '';
+        if (empty($order)) {
+            return $sql;
+        }
+        $arValue = array();
+        foreach ($order as $key => $value) {
+            $arValue[] = $key . ' ' . $value;
+        }
+        $sql = ' ORDER BY ' . implode(', ', $arValue);
+        return $sql;
+    }
+
+    public function to_array() {
+        return $this->data;
+    }
 }
