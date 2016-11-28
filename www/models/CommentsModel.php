@@ -46,10 +46,12 @@ class CommentsModel extends AbstractModel {
             'date' => 'ASC'
         );
         $arResult = self::findByColumns($params,$order);
-        if ($arResult)
+        if ($arResult){
             foreach ($arResult as $item) {
                 $item->comments = self::FindByParent($item->id, 'comments');
             }
+            return $arResult;
+        }
     }
 
 
