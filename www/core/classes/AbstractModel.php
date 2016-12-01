@@ -85,6 +85,14 @@ abstract class AbstractModel implements Iterator
         return $res;
     }
 
+    public static function findOneByColumn($column, $value, $order = array()) {
+        $res = self::findByColumn($column, $value, $order);
+        if (empty($res)) {
+            return false;
+        }
+        return $res[0];
+    }
+
     public static function findByColumns($values, $order = array()) {
 
         $params = array();

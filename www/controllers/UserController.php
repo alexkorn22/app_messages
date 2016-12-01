@@ -34,7 +34,7 @@ class UserController extends AbstractController
         if ($this->IsPost()) {
             $this->SaveComment($_POST);
         }
-        header("Location: ".$_SERVER['HTTP_REFERER']);
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         die;
     }
 

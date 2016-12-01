@@ -1,10 +1,20 @@
 <?php
 
 
-class UserModel
+/**
+ * class UserModel
+ * @property $id
+ * @property $fullName
+ * @property $guid
+ * @property $first_name
+ * @property $last_name
+ */
+class UserModel extends AbstractModel
 {
-    public static function CurrentUserID() {
+    protected static $table = 'users';
+    public $IsAuthorization;
 
+    public static function CurrentUserID() {
         return 1;
     }
 }

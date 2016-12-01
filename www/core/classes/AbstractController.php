@@ -3,6 +3,8 @@
 abstract class AbstractController
 {
     public $view;
+    public $user;
+    protected $data;
 
     public function __construct()
     {
@@ -12,14 +14,28 @@ abstract class AbstractController
             $this->view = new $viewClassName();
         else
             $this->view = new MainView();
+        $this->user = new UserModel();
+
+    }
+
+    public function __set($name, $value)
+    {
+        $this->data[$name] = $value;
+    }
+
+    public function __get($name)
+    {
+        return $this->data[$name];
     }
 
     public function IsGet() {
-        return $_SERVER['REQUEST_METHOD'] == 'GET';
+        return $_SERVER['REQUEST_METHOD'] == 'GET' and !empty($_GET);
     }
+
     public function IsPost() {
         return $_SERVER['REQUEST_METHOD'] == 'POST';
     }
+
     public function action404() {
         header("HTTP/1.1 404 Not Found");
         header("Status: 404 Not Found");
