@@ -1,5 +1,5 @@
 
-<form action="index.php?ctrl=User&act=AddMessagePost" method="post" class="form-horizontal" role="form">
+<form action="/User/AddMessagePost/" method="post" class="form-horizontal" role="form">
     <div class="form-group">
         <div class="col-sm-12">
             <textarea class="form-control" name="text" rows="10" placeholder="Введите текст сообщения"></textarea>
@@ -19,7 +19,7 @@
         <!--БЛОК СООБЩЕНИЯ-->
          <div class="message block_mess">
              <h4><?php echo date('d.m.Y H:m', $item->date);?></h4>
-             <h3>Автор: <?php echo $item->id_author;?> </h3
+             <h3>Автор: <?php echo $item->author->full_name;?> </h3
              <p><?php echo $item->text?></p>
              <a href="javascript:void(0);" class = "open_comments" onclick="OpenComment(this)">Комментировать <i class = "fa fa-angle-right"></i></a>
              <form action="index.php?ctrl=User&act=AddCommentsPost" method="post" class="form-horizontal hidden form_comment" role="form">
@@ -64,6 +64,8 @@
                                     </div>
                                 </form>
                             </div>
+                            <!--БЛОК КОММЕНТАРИЙ УР2-->
+                            <!--КОНЕЦ БЛОК КОММЕНТАРИЙ УР2-->
                         </div>
                     </div>
 

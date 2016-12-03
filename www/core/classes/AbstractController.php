@@ -4,6 +4,7 @@ abstract class AbstractController
 {
     public $view;
     public $user;
+    public $IsAuthUser= false;
     protected $data;
 
     public function __construct()
@@ -14,7 +15,13 @@ abstract class AbstractController
             $this->view = new $viewClassName();
         else
             $this->view = new MainView();
-        $this->user = new UserModel();
+        session_start();
+        if (isset($_SESSION['user'])) {
+            $this->user = unserialize($_SESSION['user']);
+            $this->IsAuthUser = true;
+        } else {
+            $this->user = new UserModel();
+        }
 
     }
 

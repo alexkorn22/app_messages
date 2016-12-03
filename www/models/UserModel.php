@@ -12,7 +12,6 @@
 class UserModel extends AbstractModel
 {
     protected static $table = 'users';
-    public $IsAuthorization;
 
     public static function CurrentUserID() {
         return 1;

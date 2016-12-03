@@ -7,9 +7,9 @@ class Database
 
     public function __construct()
     {
-        require(PATH_FILE_CONFIG_DATABASE);
-        $dsn = 'mysql:dbname=' . $arConfigDatabase['dbname']. ';host=' . $arConfigDatabase['host'];
-        $this->dbh = new PDO($dsn, $arConfigDatabase['user'], $arConfigDatabase['password']);
+
+        $dsn = 'mysql:dbname=' . DB_NAME . ';host=' . DB_HOST;
+        $this->dbh = new PDO($dsn, DB_USER, DB_PASSWORD);
     }
     public function setClassName($className) {
         $this->className = $className;
