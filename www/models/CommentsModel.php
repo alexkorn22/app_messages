@@ -15,7 +15,7 @@ class CommentsModel extends AbstractModel {
     public static $arTypeParent = array('messages', 'comments');
     public $comments;
 
-    public static function findAll($order = array()) {
+    public static function findAll($order = array(),$limit = array()) {
         if (empty($order)) {
             $order = array(
                 'date' => 'ASC'

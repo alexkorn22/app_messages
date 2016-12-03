@@ -13,13 +13,13 @@ class MessagesModel extends AbstractModel
     public $comments;
     public $author;
 
-    public static function findAll($order = array()) {
+    public static function findAll($order = array(),$limit = array()) {
         if (empty($order)) {
             $order = array(
               'date' => 'DESC'
             );
         }
-        return parent::findAll($order);
+        return parent::findAll($order,$limit);
     }
 
     public function FillComments() {

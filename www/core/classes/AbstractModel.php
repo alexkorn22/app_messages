@@ -46,9 +46,9 @@ abstract class AbstractModel implements Iterator
         return $var;
     }
 
-    public static function findAll($order = array()) {
+    public static function findAll($order = array(),$limit = array()) {
 
-        $sql = 'SELECT * FROM ' . static::$table . AbstractModel::sql_string_order($order);
+        $sql = 'SELECT * FROM ' . static::$table . AbstractModel::sql_string_order($order) . AbstractModel::sql_string_limit($limit);
         $db = new Database();
         $db->setClassName(get_called_class());
         return $db->query($sql);
@@ -179,6 +179,22 @@ abstract class AbstractModel implements Iterator
             $arValue[] = $key . ' ' . $value;
         }
         $sql = ' ORDER BY ' . implode(', ', $arValue);
+        return $sql;
+    }
+
+    protected static function sql_string_limit($limit) {
+        $sql = '';
+        if (empty($limit)) {
+            return $sql;
+        }
+        if (empty($limit['size'])){
+            return $sql;
+        }
+        $start = 0;
+        if ($limit['start']){
+            $start = $limit['start'];
+        }
+        $sql = ' LIMIT '. $start . ',' . $limit['size'];
         return $sql;
     }
 

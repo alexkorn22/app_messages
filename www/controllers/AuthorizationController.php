@@ -10,8 +10,9 @@
 class AuthorizationController extends AbstractController {
 
     public function actionAuth() {
-        /*генерация ссылок*/
-        $url = VK_AUTH_URL;
+
+        /*генерация ссылки ВК*/
+        $url = 'https://oauth.vk.com/authorize';
         $params = array(
             'client_id'     => VK_CLIENT_ID,
             'redirect_uri'  => VK_REDIRECT_URI,
@@ -19,6 +20,7 @@ class AuthorizationController extends AbstractController {
         );
         $this->view->url_auth_vk = $url . '?' . urldecode(http_build_query($params));
 
+        /*генерация ссылки FB*/
         $url = 'https://www.facebook.com/dialog/oauth';
         $params = array(
             'client_id'     => FB_CLIENT_ID,
