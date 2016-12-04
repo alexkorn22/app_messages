@@ -36,7 +36,7 @@ abstract class AbstractView
 
     }
 
-    public static function display_template($content, $params = array()){
+    public function display_template($content, $params = array()){
 
         extract($params);
         include(PATH_FILE_TEMPLATES . '/template.php');

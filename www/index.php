@@ -15,8 +15,8 @@ if (!empty($arMainPath) && count($arMainPath)>=2){
 
 }else {
 
-    $ctrl = isset($_GET['ctrl']) ? $_GET['ctrl'] : 'Authorization';
-    $act = isset($_GET['act']) ? $_GET['act'] : 'Auth';
+    $ctrl = isset($_GET['ctrl']) ? $_GET['ctrl'] : 'Main';
+    $act = isset($_GET['act']) ? $_GET['act'] : 'Index';
 
 }
 $controllerClassName = $ctrl.'Controller';

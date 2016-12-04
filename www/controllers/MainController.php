@@ -4,6 +4,13 @@ class MainController extends AbstractController
 {
     public function actionIndex() {
 
-        MainView::display_template($this->view->render("index"));
+        if ($this->IsAuthUser){
+            $controller = new MessagesController();
+            $controller->actionAll();
+        }else {
+            $controller = new AuthorizationController();
+            $controller->actionAuth();
+        }
+
     }
 }

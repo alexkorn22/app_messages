@@ -30,8 +30,10 @@ class AuthorizationController extends AbstractController {
 
         );
         $this->view->url_auth_fb = $url . '?' . urldecode(http_build_query($params));
-
-        MainView::display_template($this->view->render("authorization"));
+        $paramsTemplate = array(
+            'curPage' => 'authorization',
+        );
+        $this->view->display_template($this->view->render("authorization"),$paramsTemplate);
     }
 
     public function actionAuthVk() {
@@ -120,6 +122,7 @@ class AuthorizationController extends AbstractController {
     public function actionLogout() {
         UserToolsModel::logout();
         $this->IsAuthUser = false;
+        header("Location: http://" . $_SERVER['HTTP_HOST'] . '/');
     }
 
 }

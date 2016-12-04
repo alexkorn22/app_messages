@@ -1,3 +1,3 @@
-textarea{resize:none}.center_block{display:block;margin-left:auto;margin-right:auto}.wrap_load{margin-top:25px;margin-bottom:10px}.wrap_load .load{height:65px;width:65px;background-image:url("../../img/load.gif");background-repeat:no-repeat;display:none}
+body{overflow-y:scroll}body a:hover,body a:focus{text-decoration:none;outline:none}textarea{resize:none}.center_block{display:block;margin-left:auto;margin-right:auto}.wrap_load{margin-top:25px;margin-bottom:10px}.wrap_load .load{height:65px;width:65px;background-image:url("../../img/load.gif");background-repeat:no-repeat;display:none}.icon_social{font-size:20px}.icon_social i{font-size:25px}.panel{border-radius:10px}
 
 /*# sourceMappingURL=style.css.map */

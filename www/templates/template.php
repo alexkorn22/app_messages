@@ -19,27 +19,49 @@
 </head>
 <body>
 <header>
-    <div class="container">
-        <nav role="navigation" class="navbar navbar-default">
-            <!-- Brand and toggle get grouped for better mobile display -->
+
+    <nav role="navigation" class="navbar navbar-default">
+        <div class="container">
             <div class="navbar-header">
                 <a href="/" class="navbar-brand">Стена сообщений</a>
             </div>
-            <!-- Collection of nav links, forms, and other content for toggling -->
             <div id="navbarCollapse" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a class="" href="/Messages/All/">Сообщения</a></li>
-                    <?php echo ($curPage)?>
+                    <li class="<?php if ($curPage == 'messages') echo 'active'; ?>"><a
+                            href="/Messages/All/">Сообщения</a></li>
                 </ul>
+                <? if ($this->IsAuthUser): ?>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/authorization/auth/">Войти</a></li>
-                </ul>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <?php echo $this->user->full_name; ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/authorization/Logout/">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            Выход
+                        </a>
+                    </li>
+                    <? else: ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="<?php if ($curPage == 'authorization') echo 'active'; ?>">
+                                <a href="/authorization/auth/">
+                                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                    Авторизация
+                                </a>
+                            </li>
+                        </ul>
+                    <? endif; ?>
+
             </div>
-        </nav>
-    </div>
+
+    </nav>
+
 </header>
 <div class="container">
-    <?php echo $content?>
+    <?php echo $content ?>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

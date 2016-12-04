@@ -15,7 +15,10 @@ class MessagesController extends AbstractController
         );
 
         $this->view->arResult = $this->GetMessages();
-        AbstractView::display_template($this->view->renderAll());
+        $params = array(
+            'curPage' => 'messages',
+        );
+        $this->view->display_template($this->view->renderAll(),$params);
     }
 
     public function actionAllAjax() {
