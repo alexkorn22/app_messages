@@ -33,3 +33,27 @@ textarea {
 .panel {
   border-radius: 10px;
 }
+.content_message {
+  padding-bottom: 10px;
+}
+.main_block_message {
+  .message {
+    color: black;
+  }
+}
+.date {
+  font-size: 12px;
+}
+.author {
+  font-size: 16px;
+  font-weight:bold;
+}
+.comments {
+  margin-top: 10px;
+}
+.enter_comment {
+  padding-top: 0px;
+  form {
+    margin-top: 10px;
+  }
+}

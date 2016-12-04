@@ -59,3 +59,15 @@ $(document).ready(function () {
         }
     });
 });
+
+empty_form = function (curElement) {
+    cur_form = $(curElement);
+    group = cur_form.children('.enter_text_group');
+    text_area = group.children('.col-md-12').children('.enter_text');
+    if(text_area.val() == '')
+    {
+        alert('Вы не ввели текст.');
+        return false;
+    }
+    return true;
+}

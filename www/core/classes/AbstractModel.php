@@ -58,7 +58,7 @@ abstract class AbstractModel implements Iterator
 
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
         $params = array();
-        $params[':id'] = $id;
+        $params[':id'] = (int)$id;
 
         $db = new Database();
         $db->setClassName(get_called_class());

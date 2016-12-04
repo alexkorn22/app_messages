@@ -14,6 +14,7 @@ class CommentsModel extends AbstractModel {
     protected static $table = 'comments';
     public static $arTypeParent = array('messages', 'comments');
     public $comments;
+    public $author;
 
     public static function findAll($order = array(),$limit = array()) {
         if (empty($order)) {
@@ -48,11 +49,19 @@ class CommentsModel extends AbstractModel {
         $arResult = self::findByColumns($params,$order);
         if ($arResult){
             foreach ($arResult as $item) {
+                $item->FillAuthor();
                 $item->comments = self::FindByParent($item->id, 'comments');
             }
             return $arResult;
         }
     }
 
+    public function FillAuthor() {
+        $author = UserModel::findOneByPk($this->id_author);
+        if ($author)
+            $this->author = $author;
+        else
+            $this->author = new UserModel();
+    }
 
 }

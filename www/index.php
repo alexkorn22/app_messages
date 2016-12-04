@@ -21,12 +21,20 @@ if (!empty($arMainPath) && count($arMainPath)>=2){
 }
 $controllerClassName = $ctrl.'Controller';
 $method = 'action'.$act;
-
-$controller = new $controllerClassName();
-
-if (method_exists($controller, $method))
-    $controller->$method();
-else
+if (class_exists($controllerClassName)) {
+    $controller = new $controllerClassName();
+    if (method_exists($controller, $method)) {
+        $controller->$method();
+    }else {
+        $controller->action404();
+    }
+} else {
+    $controller = new MainController();
     $controller->action404();
+}
+
+
+
+
 
 
