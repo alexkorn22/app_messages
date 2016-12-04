@@ -26,7 +26,7 @@ class AuthorizationController extends AbstractController {
             'client_id'     => FB_CLIENT_ID,
             'redirect_uri'  => FB_REDIRECT_URI,
             'response_type' => 'code',
-            'scope'         => 'email',
+            'scope'         => 'public_profile,email',
 
         );
         $this->view->url_auth_fb = $url . '?' . urldecode(http_build_query($params));
@@ -48,7 +48,7 @@ class AuthorizationController extends AbstractController {
             if (isset($token['access_token'])) {
                 $params = array(
                     'uids'         => $token['user_id'],
-                    'fields'       => 'uid,first_name,last_name',
+                    'fields'       => 'uid,first_name,last_name, email',
                     'access_token' => $token['access_token']
                 );
 
@@ -92,8 +92,8 @@ class AuthorizationController extends AbstractController {
             parse_str(file_get_contents($url . '?' . http_build_query($params)), $tokenInfo);
             if (count($tokenInfo) > 0 && isset($tokenInfo['access_token'])) {
                 $params = array('access_token' => $tokenInfo['access_token']);
-
-                $userInfo = json_decode(file_get_contents('https://graph.facebook.com/me' . '?' . urldecode(http_build_query($params))), true);
+                $resJson = file_get_contents('https://graph.facebook.com/me' . '?' . urldecode(http_build_query($params)));
+                $userInfo = json_decode($resJson, true);
 
                 if (isset($userInfo['id'])) {
                     $userInfo = $userInfo;
@@ -107,9 +107,7 @@ class AuthorizationController extends AbstractController {
                 } else{
                     $this->user = $findUser;
                 }
-                $this->user->first_name = $userInfo['first_name'];
-                $this->user->last_name = $userInfo['last_name'];
-                $this->user->full_name = $this->user->first_name . ' ' . $this->user->last_name;
+                $this->user->full_name = $userInfo['name'];
                 $this->user->guid = $userInfo['id'];
                 $this->user->save();
                 UserToolsModel::login($this->user);

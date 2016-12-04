@@ -18,9 +18,27 @@
     <![endif]-->
 </head>
 <body>
+<header>
+    <div class="container">
+        <nav role="navigation" class="navbar navbar-default">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">Стена сообщений</a>
+            </div>
+            <!-- Collection of nav links, forms, and other content for toggling -->
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a class="" href="/Messages/All/">Сообщения</a></li>
+                    <?php echo ($curPage)?>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/authorization/auth/">Войти</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
 <div class="container">
-    <a href="/">Главная</a>
-    <a href="/Messages/All">Сообщения</a>
     <?php echo $content?>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

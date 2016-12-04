@@ -114,14 +114,19 @@ abstract class AbstractModel implements Iterator
     protected function insert() {
 
         $data = array();
+        $arKeys = array();
         foreach ($this->data as $key => $value) {
+            if (empty($value)) {
+                continue;
+            }
             //пропускаем id
-            if ($key != 'id'){
-                $arData[] = $key . '=:' . $key;
+            if ($key == 'id'){
+                continue;
             }
             $data[':' . $key] = $value;
+            $arKeys[] = $key ;
         }
-        $sql = 'INSERT INTO ' . static::$table . ' (' . implode(", ", array_keys($this->data)) .
+        $sql = 'INSERT INTO ' . static::$table . ' (' . implode(", ", $arKeys) .
                 ') VALUES (' . implode(", ", array_keys($data)) . ')';
         $db = new Database();
         $db->setClassName(get_called_class());

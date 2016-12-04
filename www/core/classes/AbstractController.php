@@ -19,9 +19,9 @@ abstract class AbstractController
         $nameClass = str_replace('Controller','',get_called_class());
         $viewClassName = $nameClass . 'View';
         if (file_exists(__DIR__ . '/../../views/' . $nameClass . 'View.php'))
-            $this->view = new $viewClassName();
+            $this->view = new $viewClassName($this);
         else
-            $this->view = new MainView();
+            $this->view = new MainView($this);
 
 
     }

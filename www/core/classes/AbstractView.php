@@ -4,9 +4,13 @@ abstract class AbstractView
 {
     protected $data = array();
     private $dir_tmpl;
+    public $user;
+    public $IsAuthUser= false;
 
-    public function __construct()
+    public function __construct($controller)
     {
+        $this->user = $controller->user;
+        $this->IsAuthUser = $controller->IsAuthUser;
         $this->dir_tmpl = PATH_FILE_TEMPLATES . '/components';
     }
 
@@ -32,8 +36,9 @@ abstract class AbstractView
 
     }
 
-    public static function display_template($content){
+    public static function display_template($content, $params = array()){
 
+        extract($params);
         include(PATH_FILE_TEMPLATES . '/template.php');
 
     }
