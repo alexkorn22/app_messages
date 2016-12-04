@@ -13,7 +13,4 @@ class UserModel extends AbstractModel
 {
     protected static $table = 'users';
 
-    public static function CurrentUserID() {
-        return 1;
-    }
 }

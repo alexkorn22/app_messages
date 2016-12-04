@@ -36,7 +36,7 @@ class AuthorizationController extends AbstractController {
         $this->view->display_template($this->view->render("authorization"),$paramsTemplate);
     }
 
-    public function actionAuthVk() {
+    public function actionAuthVK() {
         if (isset($_GET['code'])) {
             $result = false;
             $params = array(
@@ -73,7 +73,7 @@ class AuthorizationController extends AbstractController {
                 $this->user->guid = $userInfo['uid'];
                 $this->user->save();
                 UserToolsModel::login($this->user);
-                header("Location: http://" . $_SERVER['HTTP_HOST'] . '/messages/all/');
+                header("Location: http://" . $_SERVER['HTTP_HOST'] . '/Messages/All/');
                 die;
             }
         }
@@ -113,10 +113,33 @@ class AuthorizationController extends AbstractController {
                 $this->user->guid = $userInfo['id'];
                 $this->user->save();
                 UserToolsModel::login($this->user);
-                header("Location: http://" . $_SERVER['HTTP_HOST'] . '/messages/all/');
+                header("Location: http://" . $_SERVER['HTTP_HOST'] . '/Messages/All/');
                 die;
             }
         }
+    }
+
+
+    /**
+     * тестовый метод для авторизации
+     */
+    public function actionAuthAdmin(){
+
+        $userInfo['id'] = 'admin';
+        $userInfo['name'] = 'Администратор';
+        $findUser = UserModel::findOneByColumn('guid', $userInfo['id']);
+        if (!$findUser) {
+            $this->user = new UserModel();
+        } else {
+            $this->user = $findUser;
+        }
+        $this->user->full_name = $userInfo['name'];
+        $this->user->guid = $userInfo['id'];
+        $this->user->save();
+        UserToolsModel::login($this->user);
+        header("Location: http://" . $_SERVER['HTTP_HOST'] . '/Messages/All/');
+        die;
+
     }
 
     public function actionLogout() {

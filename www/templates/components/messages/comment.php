@@ -17,7 +17,7 @@
     <?if($level <3 && $this->IsAuthUser):?>
         <div class="enter_comment">
             <a href="javascript:void(0);" class = "open_comments" onclick="OpenComment(this)">Комментировать <i class = "fa fa-angle-right"></i></a>
-            <form action="/user/AddCommentsPost/" method="post" class="form-horizontal hidden form_comment" role="form" onsubmit="return empty_form(this)">
+            <form action="/User/AddCommentsPost/" method="post" class="form-horizontal hidden form_comment" role="form" onsubmit="return empty_form(this)">
                 <input type="hidden" name="id_parent" value="<?php echo $comment->id?>">
                 <input type="hidden" name="type_parent" value="comments">
                 <div class="form-group enter_text_group">

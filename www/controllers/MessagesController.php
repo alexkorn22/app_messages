@@ -6,7 +6,7 @@
  */
 class MessagesController extends AbstractController
 {
-    const COUNT_MESS_PAGE = 4;
+    const COUNT_MESS_PAGE = 10;
 
     public function actionAll() {
 

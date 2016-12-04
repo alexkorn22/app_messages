@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/authorization/Logout/">
+                        <a href="/Authorization/Logout/">
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
                             Выход
                         </a>
