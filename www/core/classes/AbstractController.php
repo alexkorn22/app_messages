@@ -9,12 +9,6 @@ abstract class AbstractController
 
     public function __construct()
     {
-        $nameClass = str_replace('Controller','',get_called_class());
-        $viewClassName = $nameClass . 'View';
-        if (file_exists(__DIR__ . '/../../views/' . $nameClass . 'View.php'))
-            $this->view = new $viewClassName();
-        else
-            $this->view = new MainView();
         session_start();
         if (isset($_SESSION['user'])) {
             $this->user = unserialize($_SESSION['user']);
@@ -22,6 +16,13 @@ abstract class AbstractController
         } else {
             $this->user = new UserModel();
         }
+        $nameClass = str_replace('Controller','',get_called_class());
+        $viewClassName = $nameClass . 'View';
+        if (file_exists(__DIR__ . '/../../views/' . $nameClass . 'View.php'))
+            $this->view = new $viewClassName();
+        else
+            $this->view = new MainView();
+
 
     }
 

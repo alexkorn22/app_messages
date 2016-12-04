@@ -6,7 +6,7 @@
  */
 class MessagesController extends AbstractController
 {
-    const COUNT_MESS_PAGE = 5;
+    const COUNT_MESS_PAGE = 4;
 
     public function actionAll() {
 
@@ -15,7 +15,7 @@ class MessagesController extends AbstractController
         );
 
         $this->view->arResult = $this->GetMessages();
-        MainView::display_template($this->view->render("messages"));
+        AbstractView::display_template($this->view->renderAll());
     }
 
     public function actionAllAjax() {
@@ -28,7 +28,7 @@ class MessagesController extends AbstractController
                 'size' => self::COUNT_MESS_PAGE,
             );
             $this->view->arResult = $this->GetMessages();
-            $this->view->display("messages");
+            echo $this->view->renderForAjax();
         }
     }
 

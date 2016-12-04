@@ -3,7 +3,12 @@
 abstract class AbstractView
 {
     protected $data = array();
-    private $dir_tmpl = PATH_FILE_TEMPLATES;
+    private $dir_tmpl;
+
+    public function __construct()
+    {
+        $this->dir_tmpl = PATH_FILE_TEMPLATES . '/components';
+    }
 
     public function __set($key, $value){
         $this->data[$key] = $value;
@@ -24,6 +29,12 @@ abstract class AbstractView
     public function display($template){
 
         echo $this->render($template);
+
+    }
+
+    public static function display_template($content){
+
+        include(PATH_FILE_TEMPLATES . '/template.php');
 
     }
 

@@ -19,7 +19,6 @@ if (!empty($arMainPath) && count($arMainPath)>=2){
     $act = isset($_GET['act']) ? $_GET['act'] : 'Auth';
 
 }
-
 $controllerClassName = $ctrl.'Controller';
 $method = 'action'.$act;
 

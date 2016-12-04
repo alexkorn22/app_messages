@@ -1,3 +1,19 @@
 textarea {
   resize: none;
 }
+.center_block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.wrap_load {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  .load {
+    height: 65px;
+    width: 65px;
+    background-image: url("../../img/load.gif");
+    background-repeat: no-repeat;
+    display: none;
+  }
+}
