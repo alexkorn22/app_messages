@@ -2,6 +2,7 @@
     <h4 ><?php echo date('d.m.Y H:m', $comment->date);?></h4>
     <h3>Автор: <?php echo $item->author->full_name;?> </h3
     <p><?php echo $comment->text?></p>
+    <?if($level <3):?>
     <a href="javascript:void(0);" class = "open_comments" onclick="OpenComment(this)">Комментировать <i class = "fa fa-angle-right"></i></a>
     <form action="/user/AddCommentsPost/" method="post" class="form-horizontal hidden form_comment" role="form">
         <input type="hidden" name="id_parent" value="<?php echo $comment->id?>">
@@ -17,4 +18,5 @@
             </div>
         </div>
     </form>
+    <?endif;?>
 </div>

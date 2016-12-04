@@ -50,7 +50,7 @@ class AuthorizationController extends AbstractController {
             if (isset($token['access_token'])) {
                 $params = array(
                     'uids'         => $token['user_id'],
-                    'fields'       => 'uid,first_name,last_name, email',
+                    'fields'       => 'uid,first_name,last_name',
                     'access_token' => $token['access_token']
                 );
 

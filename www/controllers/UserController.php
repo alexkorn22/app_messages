@@ -22,7 +22,7 @@ class UserController extends AbstractController
             header("Location: http://". $_SERVER['HTTP_REFERER']);
             die;
         }
-        if ($this->IsPost()) {
+        if ($this->IsPost() && $this->IsAuthUser) {
             $this->SaveComment($_POST);
         }
         header("Location: " . $_SERVER['HTTP_REFERER']);
